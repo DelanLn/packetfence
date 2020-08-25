@@ -1,20 +1,20 @@
-package pfappserver::Form::Config::Pfmon::admin_api_audit_log_cleanup;
+package pfappserver::Form::Config::Pfcron::security_event_maintenance;
 
 =head1 NAME
 
-pfappserver::Form::Config::Pfmon::admin_api_audit_log_cleanup - Web form for admin_api_audit_log_cleanup pfmon task
+pfappserver::Form::Config::Pfcron::security_event_maintenance - Web form for security_event_maintenance pfmon task
 
 =head1 DESCRIPTION
 
-Web form for admin_api_audit_log_cleanup pfmon task
+Web form for security_event_maintenance pfmon task
 
 =cut
 
 use HTML::FormHandler::Moose;
 
-use pfappserver::Form::Config::Pfmon qw(default_field_method batch_help_text timeout_help_text window_help_text);
+use pfappserver::Form::Config::Pfcron qw(default_field_method batch_help_text timeout_help_text window_help_text);
 
-extends 'pfappserver::Form::Config::Pfmon';
+extends 'pfappserver::Form::Config::Pfcron';
 with 'pfappserver::Base::Form::Role::Help';
 
 has_field 'batch' => (
@@ -31,12 +31,6 @@ has_field 'timeout' => (
              help => \&timeout_help_text },
 );
 
-has_field 'window' => (
-    type => 'Duration',
-    default_method => \&default_field_method,
-    tags => { after_element => \&help,
-             help => \&window_help_text },
-);
 
 =head2 default_type
 
@@ -45,12 +39,12 @@ default value of type
 =cut
 
 sub default_type {
-    return "admin_api_audit_log_cleanup";
+    return "security_event_maintenance";
 }
 
 has_block  definition =>
   (
-    render_list => [qw(type status interval batch timeout window)],
+    render_list => [qw(type status interval batch timeout)],
   );
 
 

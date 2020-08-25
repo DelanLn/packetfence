@@ -1,8 +1,8 @@
-package pfappserver::Form::Config::Pfmon::radius_audit_log_cleanup;
+package pfappserver::Form::Config::Pfcron::radius_audit_log_cleanup;
 
 =head1 NAME
 
-pfappserver::Form::Config::Pfmon::radius_audit_log_cleanup - Web form for radius_audit_log_cleanup pfmon task
+pfappserver::Form::Config::Pfcron::radius_audit_log_cleanup - Web form for radius_audit_log_cleanup pfmon task
 
 =head1 DESCRIPTION
 
@@ -12,9 +12,9 @@ Web form for radius_audit_log_cleanup pfmon task
 
 use HTML::FormHandler::Moose;
 
-use pfappserver::Form::Config::Pfmon qw(default_field_method batch_help_text timeout_help_text window_help_text);
+use pfappserver::Form::Config::Pfcron qw(default_field_method batch_help_text timeout_help_text window_help_text);
 
-extends 'pfappserver::Form::Config::Pfmon';
+extends 'pfappserver::Form::Config::Pfcron';
 with 'pfappserver::Base::Form::Role::Help';
 
 has_field 'batch' => (

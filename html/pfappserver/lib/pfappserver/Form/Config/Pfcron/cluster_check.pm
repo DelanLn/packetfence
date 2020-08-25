@@ -1,44 +1,19 @@
-package pfappserver::Form::Config::Pfmon::certificates_check;
+package pfappserver::Form::Config::Pfcron::cluster_check;
 
 =head1 NAME
 
-pfappserver::Form::Config::Pfmon::certificates_check
+pfappserver::Form::Config::Pfcron::cluster_check - Web form for cluster_check pfmon task
 
 =head1 DESCRIPTION
 
-Web form for certificates_check pfmon task
+Web form for cluster_check pfmon task
 
 =cut
 
 use HTML::FormHandler::Moose;
 
-use pfappserver::Form::Config::Pfmon qw(default_field_method);
-
-extends 'pfappserver::Form::Config::Pfmon';
+extends 'pfappserver::Form::Config::Pfcron';
 with 'pfappserver::Base::Form::Role::Help';
-
-
-has_field 'delay' => (
-    type            => 'Duration',
-    default_method  => \&default_field_method,
-    tags => { 
-        after_element   => \&help,
-        help            => "Minimum gap before certificate expiration date (will the certificate expires in ...)",
-    },
-);
-
-has_field 'certificates' => (
-    type            => 'TextArea',
-    default_method  => \&default_field_method,
-    tags => { 
-        after_element   => \&help,
-        help            => "SSL certificate(s) to monitor. Comma-delimited list",
-    },
-);
-
-has_block definition => (
-    render_list => [qw(type status interval delay certificates)],
-);
 
 
 =head2 default_type
@@ -48,8 +23,13 @@ default value of type
 =cut
 
 sub default_type {
-    return "certificates_check";
+    return "cluster_check";
 }
+
+has_block  definition =>
+  (
+    render_list => [qw(type status interval)],
+  );
 
 
 =head1 COPYRIGHT

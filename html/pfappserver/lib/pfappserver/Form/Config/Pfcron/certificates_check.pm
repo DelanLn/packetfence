@@ -1,19 +1,44 @@
-package pfappserver::Form::Config::Pfmon::option82_query;
+package pfappserver::Form::Config::Pfcron::certificates_check;
 
 =head1 NAME
 
-pfappserver::Form::Config::Pfmon::option82_query - Web form for option82_query pfmon task
+pfappserver::Form::Config::Pfcron::certificates_check
 
 =head1 DESCRIPTION
 
-Web form for option82_query pfmon task
+Web form for certificates_check pfmon task
 
 =cut
 
 use HTML::FormHandler::Moose;
 
-extends 'pfappserver::Form::Config::Pfmon';
+use pfappserver::Form::Config::Pfcron qw(default_field_method);
+
+extends 'pfappserver::Form::Config::Pfcron';
 with 'pfappserver::Base::Form::Role::Help';
+
+
+has_field 'delay' => (
+    type            => 'Duration',
+    default_method  => \&default_field_method,
+    tags => { 
+        after_element   => \&help,
+        help            => "Minimum gap before certificate expiration date (will the certificate expires in ...)",
+    },
+);
+
+has_field 'certificates' => (
+    type            => 'TextArea',
+    default_method  => \&default_field_method,
+    tags => { 
+        after_element   => \&help,
+        help            => "SSL certificate(s) to monitor. Comma-delimited list",
+    },
+);
+
+has_block definition => (
+    render_list => [qw(type status interval delay certificates)],
+);
 
 
 =head2 default_type
@@ -23,13 +48,8 @@ default value of type
 =cut
 
 sub default_type {
-    return "option82_query";
+    return "certificates_check";
 }
-
-has_block  definition =>
-  (
-    render_list => [qw(type status interval)],
-  );
 
 
 =head1 COPYRIGHT
