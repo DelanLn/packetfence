@@ -11,6 +11,7 @@ pfserver_mgmt_ip: '{{.PF_TEST_MGMT_IP}}'
 pfserver_mgmt_netmask: '{{.PF_TEST_MGMT_MASK}}'
 smtp_server: '{{.MAILHOG_SMTP_SERVER_IP}}'
 smtp_port: '{{.MAILHOG_SMTP_PORT}}'
+mariadb_socket: '{{.MARIADB_SOCKET}}'
 
 # ssh executor variables
 ssh_user: vagrant
@@ -18,7 +19,7 @@ ssh_user: vagrant
 # pfserver variables
 pfserver_webadmin_url: 'https://{{.pfserver_mgmt_ip}}:1443'
 pfserver_default_admin_user: admin
-pfserver_default_admin_password: admin
+pfserver_admin_password: secret
 
 # ad variables
 ad_mgmt_ip: 172.17.17.100
@@ -169,7 +170,7 @@ configurator.domain: '{{.ad_dns_domain}}'
 configurator.hostname: packetfence
 
 # Admin account
-configurator.admin.password: secret
+configurator.admin.password: '{{.pfserver_admin_password}}'
 configurator.admin.valid_from: 1970-01-01 00:00:00
 
 # Fingerbank
