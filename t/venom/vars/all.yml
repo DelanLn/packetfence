@@ -167,7 +167,7 @@ configurator.smtp.port: '{{.smtp_port}}'
 
 # General
 configurator.domain: '{{.ad_dns_domain}}'
-configurator.hostname: packetfence
+configurator.hostname: pf
 
 # Admin account
 configurator.admin.password: '{{.pfserver_admin_password}}'

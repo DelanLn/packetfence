@@ -64,16 +64,21 @@ Can certainly be done during step4
 1. Check if all services are running
 
 ## Teardown steps
-No teardown.
+1. Cleanup mail in MailHog Inbox
 
 ### Additional notes
 
-No `Authorization` header because configurator is token-less.
+- No `Authorization` header because configurator is token-less.
+
+- This test suite need to be self-contained to test everything before going further
 
 ### Step 1
  
  * PacketFence will transform each dynamic interface into a static
    interface. First interface will have a static IP address which doesn't
    seems to cause issue with libvirt.
+   
+ * IP for registration and isolation networks can't be .1 because hypervisor
+   already have it
    
  * We don't change hostname for now because it requires a reboot at end of configurator

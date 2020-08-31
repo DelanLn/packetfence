@@ -169,14 +169,14 @@ testcases:
     body: >-
       {
         "domain": "{{.configurator.domain}}",
-        "hostname": "{{.configurator.hostname}}",
-        "timezone": "UTC"
+        "hostname": "{{.configurator.hostname}}"
       }
     headers:
       "Content-Type": "application/json"
     assertions:
       - result.statuscode ShouldEqual 200
-      
+
+# only necessary if timezone changed
 - name: restart_mariadb_service
   steps:
   - type: http
