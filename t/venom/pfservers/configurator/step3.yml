@@ -1,6 +1,7 @@
 name: Step 3 Fingerbank
 version: 2
 testcases:
+# FIXME: get Psono secret
 - name: add_fingerbank_key
   steps:
     - type: http
